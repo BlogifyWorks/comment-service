@@ -46,7 +46,7 @@ jobs:
       run: mvn test
       working-directory: comment-service
     
-    - name: Display Surefire Reports
+    - name: Diisplay Surefire Reports
       if: failure()
       run: |
         echo "Sunfire tests"
