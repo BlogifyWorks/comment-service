@@ -45,3 +45,16 @@ jobs:
     - name: Run tests
       run: mvn test
       working-directory: comment-service
+    
+    - name: Display Surefire Reports
+      if: failure()
+      run: |
+        echo "Sunfire tests"
+        cat comment-servive/target/sunfire-reports/*.txt || true
+
+
+
+
+
+      
+      
