@@ -1,6 +1,7 @@
 package com.tayyub.commentservice.controller;
 
 
+import com.tayyub.commentservice.dto.CommentDTO;
 import com.tayyub.commentservice.entity.Comment;
 import com.tayyub.commentservice.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,32 +17,32 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping
-    public ResponseEntity createComment(@RequestBody Comment comment) {
-        Comment createdComment = commentService.createComment(comment);
+    public ResponseEntity<CommentDTO> createComment(@RequestBody Comment comment) {
+        CommentDTO createdComment = commentService.createComment(comment);
         return ResponseEntity.ok(createdComment);
     }
 
     @GetMapping("blog/{blogId}")
-    public ResponseEntity<List<Comment>>getCommentsByBlogId(@PathVariable Long blogId) {
-        List<Comment> comments = commentService.getCommentsByBlogId(blogId);
+    public ResponseEntity<List<CommentDTO>>getCommentsByBlogId(@PathVariable Long blogId) {
+        List<CommentDTO> comments = commentService.getCommentsByBlogId(blogId);
         return ResponseEntity.ok(comments);
     }
     @GetMapping("/parent/{parentCommentId}")
-    public ResponseEntity<List<Comment>> getRepliesByParentCommentId(@PathVariable Long parentCommentId) {
-        List<Comment> replies = commentService.getCommentsByParentCommentId(parentCommentId);
+    public ResponseEntity<List<CommentDTO>> getRepliesByParentCommentId(@PathVariable Long parentCommentId) {
+        List<CommentDTO> replies = commentService.getCommentsByParentCommentId(parentCommentId);
         return ResponseEntity.ok(replies);
     }
 
     // Get all comments
     @GetMapping
-    public ResponseEntity<List<Comment>> getAllComments() {
-        List<Comment> comments = commentService.getAllComments();
+    public ResponseEntity<List<CommentDTO>> getAllComments() {
+        List<CommentDTO> comments = commentService.getAllComments();
         return ResponseEntity.ok(comments);
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Comment>> getCommentsByUserId(@PathVariable Long userId) {
-        List<Comment> comments = commentService.getAllCommentsByUser(userId);
+    public ResponseEntity<List<CommentDTO>> getCommentsByUserId(@PathVariable Long userId) {
+        List<CommentDTO> comments = commentService.getAllCommentsByUser(userId);
         return ResponseEntity.ok(comments);
     }
 
